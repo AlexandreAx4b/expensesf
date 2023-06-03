@@ -3,7 +3,7 @@
 export const Dashboard = () => {
 
   return (
-    <BaseLayout titulo="Página Inicial">
+    <BaseLayout titulo="Página Inicial" barraFerramentas={<>Barra de Ferramentas</>}>
       testando
     </BaseLayout>
 
