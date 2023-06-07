@@ -1,4 +1,4 @@
-import { DetailsTools, ListingTools } from "../../shared/components"
+import { DetailsTools } from "../../shared/components"
 import { BaseLayout } from "../../shared/layouts"
 
 export const Dashboard = () => {
@@ -7,7 +7,12 @@ export const Dashboard = () => {
     <BaseLayout
       titulo="Página Inicial"
       barraFerramentas={(
-        <DetailsTools showSaveBackButton showSaveBackButtonLoading />
+        <DetailsTools
+        showNewButton
+        showSaveBackButton
+        showSaveBackButtonLoading
+        showBackButton={false}
+        />
       )}>
       testando
     </BaseLayout>

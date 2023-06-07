@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Icon, Paper, Skeleton, useTheme } from "@mui/material"
+import { Box, Button, Divider, Icon, Paper, Skeleton, Typography, useMediaQuery, useTheme } from "@mui/material"
 
 interface IDetailsToolsProps {
   textNewButton?: string
@@ -45,6 +45,8 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
 
 }) => {
   const theme = useTheme()
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'))
+  const mdDown = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
     <Box
@@ -65,7 +67,14 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
           onClick={clickSaveButton}
           startIcon={<Icon>save</Icon>}
         >
-          Salvar
+          <Typography
+            overflow='hidden'
+            whiteSpace='nowrap'
+            textOverflow='ellipsis'
+            variant='button'
+          >
+            Salvar
+          </Typography>
         </Button>
       )}
 
@@ -73,7 +82,7 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
         <Skeleton width={110} height={60} />
       )}
 
-      {(showSaveBackButton && !showSaveBackButtonLoading) && (
+      {(showSaveBackButton && !showSaveBackButtonLoading && !smDown && !mdDown) && (
         <Button
           color='primary'
           disableElevation
@@ -81,10 +90,17 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
           onClick={clickSaveBackButton}
           startIcon={<Icon>save</Icon>}
         >
-          Salvar e Voltar
+          <Typography
+            overflow='hidden'
+            whiteSpace='nowrap'
+            textOverflow='ellipsis'
+            variant='button'
+          >
+            Salvar e Voltar
+          </Typography>
         </Button>
       )}
-      {showSaveBackButtonLoading && (
+      {(showSaveBackButtonLoading && !smDown && !mdDown) && (
         <Skeleton width={180} height={60} />
       )}
 
@@ -96,14 +112,21 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
           onClick={clickDeleteButton}
           startIcon={<Icon>delete</Icon>}
         >
-          Apagar
+          <Typography
+            overflow='hidden'
+            whiteSpace='nowrap'
+            textOverflow='ellipsis'
+            variant='button'
+          >
+            Apagar
+          </Typography>
         </Button>
       )}
       {showDeleteButtonLoading && (
         <Skeleton width={110} height={60} />
       )}
 
-      {(showNewButton && !showNewButtonLoading) && (
+      {(showNewButton && !showNewButtonLoading && !smDown) && (
         <Button
           color='primary'
           disableElevation
@@ -111,14 +134,27 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
           onClick={clickNewButton}
           startIcon={<Icon>add</Icon>}
         >
-          {textNewButton}
+          <Typography
+            overflow='hidden'
+            whiteSpace='nowrap'
+            textOverflow='ellipsis'
+            variant='button'
+          >
+            {textNewButton}
+          </Typography>
         </Button>
       )}
-      {showNewButtonLoading && (
+      {(showNewButtonLoading && !smDown) && (
         <Skeleton width={110} height={60} />
       )}
-
-      <Divider variant="middle" orientation="vertical" />
+      {
+        (showBackButton &&
+          (showDeleteButton || showNewButton || showSaveBackButton || showSaveButton)
+        )
+        &&
+        (
+          <Divider variant="middle" orientation="vertical" />
+        )}
 
       {(showBackButton && !showBackButtonLoading) && (
         <Button
@@ -128,7 +164,14 @@ export const DetailsTools: React.FC<IDetailsToolsProps> = ({
           onClick={clickBackButton}
           startIcon={<Icon>arrow_back</Icon>}
         >
-          Voltar
+          <Typography
+            overflow='hidden'
+            whiteSpace='nowrap'
+            textOverflow='ellipsis'
+            variant='button'
+          >
+            Voltar
+          </Typography>
         </Button>
       )}
 
