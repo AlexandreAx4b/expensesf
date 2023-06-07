@@ -7,7 +7,7 @@ export const Dashboard = () => {
     <BaseLayout
       titulo="Página Inicial"
       barraFerramentas={(
-        <DetailsTools />
+        <DetailsTools showSaveBackButton />
       )}>
       testando
     </BaseLayout>
